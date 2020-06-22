@@ -1,0 +1,110 @@
+.invitecard{
+  position: relative;
+  right: 0px;
+  width:50%;
+  height:100%;
+  background-color: #FFFFFF;
+}
+
+.close-invite-card{
+  position: absolute;
+  right: 0px;
+  top:0px;
+  padding:15px;
+  cursor: pointer;
+}
+
+.container {
+  padding: 2px 16px;
+}
+
+.clear-icon {
+  cursor: pointer;
+}
+
+.clear-icon:hover{
+  color:#0F586F
+}
+
+.card-head{
+  top: 0px;
+  padding: 10px;
+  border-bottom: solid #235565 2px;
+  color:#235565
+  /* background-color: #235565; */
+}
+
+.headings {
+  color:#235565;
+  font-weight: heavy;
+}
+
+.card{
+  border: 2px solid #C6C6C6;
+  padding:10px;
+  background-color: #EFEFEF;
+  border-radius:4px;
+  margin:10px 0 10px 0;
+}
+
+.card-foot{
+  bottom: 0px;
+  padding: 10px;
+  border-top: solid #235565 2px;
+  color:#235565;
+  position:absolute;
+  width:96%;
+  background-color: #ffffff;
+  /* background-color: #235565; */
+}
+
+.expensionpanel{
+  background-color: #EFEFEF;
+  
+  margin: 10px 0 10px 0;
+}
+
+
+
+.expensionpanelhead{
+  background-color: #0F5D6F !important;
+  color:#FFFFFF;
+}
+
+.contactsList{
+  overflow: scroll;
+  height:57%;
+  /* height:60%; */
+  position: absolute;
+  width:100%;
+  padding-bottom:15px;
+}
+
+.inviteNew{
+  height:25%;
+}
+
+.gap {
+  margin:10px 0 10px 0;
+}
+
+.trigger {
+padding: 1px 10px;
+font-size: 12px;
+font-weight: 400;
+border-radius: 10px;
+background-color: #eee;
+color: #212121;
+display: inline-block;
+margin: 2px 5px;
+}
+
+.hoverable, .trigger {
+transition: box-shadow 0.55s;
+box-shadow: 0;
+}
+
+.hoverable:hover, .trigger:hover {
+transition: box-shadow 0.45s;
+box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

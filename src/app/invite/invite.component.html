@@ -1,0 +1,146 @@
+ 
+<div class="card-head">
+  <label>
+    <b>Invite Contacts</b>
+  </label>
+  <span (click)="closeInviteCard()" class="close-invite-card">
+    <mat-icon class="clear-icon">clear</mat-icon>
+  </span>
+</div>
+<div class="wrapper" *ngIf="!inviteListView">
+  <div class="gap" >
+      <div class="row form-inline toolbar">
+        
+        <div class="col-md-12 form-group">
+          <select class="form-control" [(ngModel)]="filter">
+              <option value="groups">By Groups</option>
+              <option value="all">All Contacts</option>
+          </select>
+          
+            <mat-icon class="clear-icon col-md-offset-6"  style="float:right"  (click)="inviteNew()" title="Add email to invite">person_add</mat-icon>
+            
+        </div>
+      </div>
+  </div>
+  <div class="card" *ngIf="inviteAdhoc">
+    <div class="card-body">
+      <div class=" row">
+        <div class="col-md-8" >
+          <input type="email" placeholder="Email" name="invite" class=" form-control"  [(ngModel)]="newinvite" required/>
+        </div>
+        <div class="col-md-3">
+          <button class="btn primary" (click)="AddtoInviteList(newinvite)" >Add to Invite List</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <div class="gap">
+   
+    <div class="newinvitelist"  *ngIf="newInvitelist.length > 0">
+      <label class="headings">New Invites</label>
+      <div>
+        <span *ngFor="let ilist of newInvitelist; let idx= index" class="trigger info-color text-white">{{ilist}}
+          <a href="#" style="text-decoration: none; margin-left:15px" class="clear-icon" (click)="removeNewInvite(idx)">
+                 <b>x</b>
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="gap">
+      <label *ngIf="filter == 'all'" class="headings">Contacts List</label>
+      <label *ngIf= "filter == 'groups'" class="headings">Groups List</label>
+    </div>
+    <div *ngIf="filter == 'all'" class="contactsList">
+      <table class="table table-striped">
+        <thead>
+          <th><input style="margin-left: 8px;" type="checkbox" title="selectall" (change)="selectAll(inviteAll)" [(ngModel)]="inviteAll"/></th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Company</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let contact of contacts; let idx = index">
+            <td><input type="checkbox" [(ngModel)]='contact.invite' /></td>
+            <td>{{ contact.name.first }} {{ contact.name.last }}</td>
+            <td>{{contact.email}}</td>
+            <td>{{contact.company}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf= "filter == 'groups'" class="contactsList" >
+      <ng-container *ngFor="let group of groups">
+        <mat-expansion-panel class="expensionpanel" (closed)="accordinClosed()">
+          <mat-expansion-panel-header class="expensionpanelhead">
+            <mat-panel-title>
+            {{group}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="gap">
+            <table class="table table-striped">
+            <thead>
+              <th><input style="margin-left: 8px;" type="checkbox" [(ngModel)]="groupInviteAll" (change)="selectAllFromGroup(group, groupInviteAll)"/></th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Company</th>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let contact of contacts; let idx = index">
+                <tr *ngIf="contact.groups && checkgroup(contact.groups,group)">
+                  <td><input type="checkbox" [(ngModel)]='contact.invite' /></td>
+                  <td>{{ contact.name.first }} {{ contact.name.last }}</td>
+                  <td>{{contact.email}}</td>
+                  <td>{{contact.company}}</td>
+                </tr>
+              </ng-container>
+            
+            </tbody>
+            </table>
+          </div>
+        </mat-expansion-panel> 
+      </ng-container>
+    </div>
+    
+
+  </div>
+</div>
+<div class="wrapper" *ngIf="inviteListView">
+  <div class="gap">
+   <mat-icon (click)="backtoInvite()" title="Go to previous view" class="clear-icon">reply</mat-icon>
+  </div>
+  <div class>
+     
+      <div>
+        <label class="headings gap">Invite List</label>
+      </div>
+      <div class="contactsList">
+        <table class="table table-striped">
+          <thead>
+            <th>SN</th>
+            <th>Email</th>
+            <th>Action</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let invite of invitelist; let idx= index">
+              <td>{{idx +1}}</td>
+              <td>{{invite}}</td>
+              <td>
+                <span (click)="removeInvite(idx)">
+                  <mat-icon class="clear-icon">clear</mat-icon>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>  
+      </div>
+  </div>
+</div>
+  <div class="card-foot">
+    <button *ngIf="!inviteListView" class="button primary" (click)="viewInviteList()">Invite List</button>
+
+      <button  *ngIf="inviteListView" class="button primary" (click)="invite()">Invite</button>
+</div>
+ 
+

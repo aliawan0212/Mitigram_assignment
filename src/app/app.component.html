@@ -1,0 +1,14 @@
+
+<hello name="{{ name }}"></hello>
+<ul>
+	<li *ngFor="let contact of contacts">{{ contact.name.first }} {{ contact.name.last }}</li>
+</ul>
+
+<div class="Invitebtn">
+<button class="btn primary" (click)="inviteContactsView(true)">Invite</button>
+</div>
+
+<div *ngIf="inviteContactView" class="inviteCard">
+  <invite (inviteContactView)="inviteContactsView($event)"></invite>
+</div>
+
